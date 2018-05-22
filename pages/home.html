@@ -252,10 +252,10 @@
             <ul class="nav" id="main-menu">
 
                 <li>
-                    <a class="active-menu" href="index.html"><i class="fa fa-dashboard"></i> Dashboard</a>
+                    <a class="active-menu" href="home.html"><i class="fa fa-dashboard"></i> Dashboard</a>
                 </li>
                 <li>
-                    <a href="ui-elements.html"><i class="fa fa-desktop"></i> UI Elements</a>
+                    <a onclick="changeInner('/pages/seal/main.html')"><i class="fa fa-desktop"></i>Seal Apply Management</a>
                 </li>
                 <li>
                     <a href="chart.html"><i class="fa fa-bar-chart-o"></i> Charts</a>
@@ -524,7 +524,7 @@
 <!-- /. WRAPPER  -->
 <!-- JS Scripts-->
 <!-- jQuery Js -->
-<script type="text/javascript" src="../js/jquery.js"></script>
+<script type="text/javascript" src="/js/jquery.js"></script>
 <!-- Bootstrap Js -->
 <script src="../assets/js/bootstrap.min.js"></script>
 <!-- Metis Menu Js -->
@@ -535,9 +535,17 @@
 <!-- Custom Js -->
 <script src="../assets/js/custom-scripts.js"></script>
 
+<script type="text/javascript">
+
+    function changeInner(url) {
+        $("#page-inner").load(url, function () {
+            $("#page-inner").fadeIn(100);
+        });
+    }
 
 
 
+</script>
 
 
 </body>
