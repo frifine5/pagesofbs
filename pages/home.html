@@ -30,7 +30,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.html">Dream</a>
+            <a class="navbar-brand" href="index.html">前端练习</a>
         </div>
 
         <ul class="nav navbar-top-links navbar-right">
@@ -252,10 +252,38 @@
             <ul class="nav" id="main-menu">
 
                 <li>
-                    <a class="active-menu" href="home.html"><i class="fa fa-dashboard"></i> Dashboard</a>
+                    <a class="active-menu" href="/pages/home.html"><i class="fa fa-dashboard"></i> 首页</a>
                 </li>
                 <li>
-                    <a onclick="changeInner('/pages/seal/main.html')"><i class="fa fa-desktop"></i>Seal Apply Management</a>
+                    <a href="#"><i class="fa fa-sitemap"></i>下拉菜单<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="#">二级功能1</a>
+                        </li>
+                        <li>
+                            <a href="#">二级功能2</a>
+                        </li>
+                        <li>
+                            <a href="#">二级功能3<span class="fa arrow"></span></a>
+                            <ul class="nav nav-third-level">
+                                <li>
+                                    <a href="#">功能1</a>
+                                </li>
+                                <li>
+                                    <a href="#">功能2</a>
+                                </li>
+                                <li>
+                                    <a href="#">功能3</a>
+                                </li>
+
+                            </ul>
+
+                        </li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a onclick="changeInner('/pages/seal/main.html')"><i class="fa fa-desktop"></i>申请管理</a>
                 </li>
                 <li>
                     <a href="chart.html"><i class="fa fa-bar-chart-o"></i> Charts</a>
@@ -315,11 +343,42 @@
             <div class="row">
                 <div class="col-md-12">
                     <h1 class="page-header">
-                        Dashboard
+                        系统概要
                         <small>Summary of your App</small>
                     </h1>
                 </div>
             </div>
+
+
+            <!-- 摘要说明文字 -->
+            <div class="row">
+
+                <div class="col-md-9 col-sm-12 col-xs-12">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+
+                            <div id="summary-information">
+                                &nbsp;&nbsp;&nbsp;&nbsp;本系统用于学习讨论，欢迎添加交流。<br/>
+                                qq: 497***981   <br/>
+                                phone: 188****9990  <br/>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-12 col-xs-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Donut Chart Example
+                        </div>
+                        <div class="panel-body">
+                            <div id="summary-picture"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
             <!-- /. ROW  -->
 
             <div class="row">
@@ -327,10 +386,10 @@
                     <div class="panel panel-primary text-center no-boder bg-color-green">
                         <div class="panel-body">
                             <i class="fa fa-bar-chart-o fa-5x"></i>
-                            <h3>8,457</h3>
+                            <h3>1890</h3>
                         </div>
                         <div class="panel-footer back-footer-green">
-                            Daily Visits
+                            七日访问量
 
                         </div>
                     </div>
@@ -342,7 +401,7 @@
                             <h3>52,160 </h3>
                         </div>
                         <div class="panel-footer back-footer-blue">
-                            Sales
+                            累计销量
 
                         </div>
                     </div>
@@ -351,10 +410,10 @@
                     <div class="panel panel-primary text-center no-boder bg-color-red">
                         <div class="panel-body">
                             <i class="fa fa fa-comments fa-5x"></i>
-                            <h3>15,823 </h3>
+                            <h3>15,82 </h3>
                         </div>
                         <div class="panel-footer back-footer-red">
-                            Comments
+                            七日咨询数
 
                         </div>
                     </div>
@@ -363,10 +422,10 @@
                     <div class="panel panel-primary text-center no-boder bg-color-brown">
                         <div class="panel-body">
                             <i class="fa fa-users fa-5x"></i>
-                            <h3>36,752 </h3>
+                            <h3>152 </h3>
                         </div>
                         <div class="panel-footer back-footer-brown">
-                            No. of Visits
+                            在线用户数
 
                         </div>
                     </div>
@@ -537,12 +596,38 @@
 
 <script type="text/javascript">
 
+    /**
+     * 跳转右侧页面
+     */
     function changeInner(url) {
         $("#page-inner").load(url, function () {
             $("#page-inner").fadeIn(100);
         });
     }
 
+
+    /**
+     * 加载菜单
+     */
+    function getRoleMenu() {
+        $.ajax({
+            type: "get",
+            dataType: "json",
+            url: "/login/getMenus",
+            success: function (data) {
+                var m = "";
+                if(data.code == 0 && data.data.size >0 ){
+                    for (var i = 0; i <data.data.size; i++) {
+
+                    }
+                }
+            }
+
+
+        });
+
+
+    }
 
 
 </script>
