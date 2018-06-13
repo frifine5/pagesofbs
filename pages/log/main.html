@@ -25,40 +25,54 @@
             <div class="panel-body">
                 <div class="col-lg-9">
                     <h4>查询条件</h4>
-                    <form role="form" action="javascript: conditionQuery()">
-                        <div class="col-lg-3 form-group has-success">
-                            <label class="control-label" for="inputSuccess">模块</label>
-                            <input type="text" class="form-control" id="inputSuccess">
+                    <div id="queryLeft" class="col-lg-6 form-group has-success">
+                        <div class="col-lg-6 form-group has-success">
+                            <label class="control-label" for="iModule">模块</label>
+                            <input type="text" class="form-control" id="iModule">
                         </div>
-                        <div class="col-lg-3 form-group has-warning">
-                            <label class="control-label" for="inputWarning">操作者</label>
-                            <input type="text" class="form-control" id="inputWarning">
+                        <div class="col-lg-6 form-group has-success">
+                            <label class="control-label" for="iOperateType">操作类型</label>
+                            <input type="text" class="form-control" id="iOperateType">
                         </div>
-                        <div class="col-lg-3  form-group has-success">
+                        <div class="col-lg-6 form-group has-warning">
+                            <label class="control-label" for="iUserId">操作者标识</label>
+                            <input type="text" class="form-control" id="iUserId">
+                        </div>
+                        <div class="col-lg-6 form-group has-warning">
+                            <label class="control-label" for="iUserName">操作者名称</label>
+                            <input type="text" class="form-control" id="iUserName">
+                        </div>
+
+                    </div>
+                    <div id="queryRight" class="col-lg-6 form-group has-success">
+                        <div class="col-lg-6  form-group has-success">
                             <label class="control-label" for="startDate">时间从</label>
-                            <a class='input-group date control-label' id='startDate' onclick="getDateTime(this)" >
+                            <a class='input-group date control-label' id='startDate' onclick="getDateTime(this)">
                                 <input type='text' class="form-control" id='startDateValue'
-                                       style="width: 120px; height: 30px;"  />
-                                <span class="input-group-addon" style="float: left; width: 50px; height: 30px;">
+                                       style="width: 70%; height: 30px;"/>
+                                <span class="input-group-addon" style="float: left; width: 20%; height: 30px;">
                                     <span class="glyphicon glyphicon-calendar"></span>
                                 </span>
                             </a>
                         </div>
-                        <div class="col-lg-3  form-group has-success">
+                        <div class="col-lg-6  form-group has-success">
                             <label class="control-label" for="endDate">到</label>
-                            <a class='input-group date' id='endDate' onclick="getDateTime(this)" >
+                            <a class='input-group date' id='endDate' onclick="getDateTime(this)">
                                 <input type='text' class="form-control" id='endDateValue'
-                                   style="width: 125px; height: 32px;" />
-                                <span class="input-group-addon" style="float: left; width: 50px; height: 32px;">
+                                       style="width: 70%; height: 30px;"/>
+                                <span class="input-group-addon" style="float: left; width: 20%; height: 30px;">
                                     <span class="glyphicon glyphicon-calendar"></span>
                                 </span>
                             </a>
                         </div>
                         <div class="col-lg-2 form-group pull-right">
-                            <input type="submit" class="form-control" id="submit">
+                            <input type="button" onclick="conditionQuery()" class="form-control" id="querySubmit"
+                                   value="查询">
                         </div>
-                    </form>
+                    </div>
+
                 </div>
+
             </div>
         </div>
     </div>
@@ -71,53 +85,28 @@
             </div>
             <div id="rtnList" class="panel-body">
                 <div class="table-responsive">
-                    <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                    <table class="table table-striped table-bordered table-hover" id="dataTables">
                         <thead>
                         <tr>
-                            <th>Rendering engine</th>
-                            <th>Browser</th>
-                            <th>Platform(s)</th>
-                            <th>Engine version</th>
-                            <th>CSS grade</th>
+                            <th>标识</th>
+                            <th>操作者标识</th>
+                            <th>操作者名称</th>
+                            <th>操作者类型</th>
+                            <th>操作时间</th>
+                            <th>操作模块</th>
+                            <th>操作类型</th>
+                            <th>操作内容</th>
+                            <th>操作结果</th>
+                            <th>错误码</th>
+                            <th>错误级别</th>
                         </tr>
                         </thead>
-                        <tbody>
 
-
-                        <tr class="gradeA">
-                            <td>Gecko</td>
-                            <td>Firefox 1.0</td>
-                            <td>Win 98+ / OSX.2+</td>
-                            <td class="center">1.7</td>
-                            <td class="center">A</td>
-                        </tr>
-                        <tr class="gradeA">
-                            <td>Gecko</td>
-                            <td>Firefox 1.5</td>
-                            <td>Win 98+ / OSX.2+</td>
-                            <td class="center">1.8</td>
-                            <td class="center">A</td>
-                        </tr>
-
-                        <tr class="gradeC">
-                            <td>Tasman</td>
-                            <td>Internet Explorer 5.1</td>
-                            <td>Mac OS 7.6-9</td>
-                            <td class="center">1</td>
-                            <td class="center">C</td>
-                        </tr>
-
-
-                        <tr class="gradeU">
-                            <td>Other browsers</td>
-                            <td>All others</td>
-                            <td>-</td>
-                            <td class="center">-</td>
-                            <td class="center">U</td>
-                        </tr>
-                        </tbody>
                     </table>
                 </div>
+                <div id="warnFrame" class="alert alert-warning">
+                </div>
+
 
             </div>
         </div>
@@ -144,42 +133,53 @@
 <script src="/assets/js/moment-with-locales.js"></script>
 <script src="/assets/js/bootstrap-datetimepicker.min.js"></script>
 <script src="/assets/js/bootstrap-datetimepicker.zh-CN.js"></script>
+<script src="/assets/js/bootstrap-paginator.js"></script>
 
 <script>
 
     function conditionQuery() {
-        var st = $("#startDateValue").value;
-        var et = $("#endDateValue").value;
-
-        var data = {"scpCode":"02",
-            "applyType":"10",
-            "applyDate": st,
-            "lastInspection": et
+        var st = $("#startDateValue").val();
+        var et = $("#endDateValue").val();
+        var operateType = $("#iOperateType").val();
+        var module = $("#iModule").val();
+        var userId = $("#iUserId").val();
+        var userName = $("#iUserName").val();
+        var stIdx = ($("#example").bootstrapPaginator("getPages") - 1) * 10;
+        var data = {
+            "operateType": operateType,
+            "module": module,
+            "userId": userId,
+            "userName": userName,
+            "scpStart": st,
+            "scpEnd": et,
+            "stIdx": stIdx
         };
 
         $.ajax({
             type: "post",
             data: data,
             dataType: "JSON",
-            url: "/queryStatistics/countSealApply.json",
-            cache:false,//false是不缓存，true为缓存
-            async:true,//true为异步，false为同步
+            url: "/log/queryLogs.json",
+            cache: false,//false是不缓存，true为缓存
+            async: true,//true为异步，false为同步
             timeout: 10000,
             success: function (data) {
-                var s = "code = "+ data.code +", msg = "+data.message+", data = "+data.data;
-                alert(s);
-                if(0 == data.code){
-                    var recordCount = data.data.recordCount;
+                $("#warnFrame").html("");
+                // var s = "code = " + data.code + ", msg = " + data.message + ", data = " + data.data;
+                // alert(s);
+                if (0 == data.code) {
                     var lt = data.data.list;
-                    alert(recordCount);
-                    alert(lt);
+                    var bodyHtml = fillTBody(lt);
+                    $("#dataTables").html(bodyHtml);
+                } else {
+                    var warnStr = "<strong>查询失败！</strong>错误信息：<strong>" + data.message + "</strong>, 错误码：<strong>" + data.code + "</strong>";
+                    $("#warnFrame").html(warnStr);
                 }
             },
             error: function () {
-                alert("fail");
+                var warnStr = "<strong>警告！</strong>服务超时";
+                $("#warnFrame").html(warnStr);
             }
-
-
         });
 
     }
@@ -202,9 +202,49 @@
         var mon = date.getMonth() + 1;
         var day = date.getDate();
         var mydate = date.getFullYear() + "-" + (mon < 10 ? "0" + mon : mon) + "-" + (day < 10 ? "0" + day : day);
-        document.getElementById(dateDiv+"Value").value = mydate;
+        document.getElementById(dateDiv + "Value").value = mydate;
     }
 
+
+    function fillTBody(list) {
+        if (list.length <= 0) return "";
+        var divStr = "<table class='table table-striped table-bordered table-hover' id='dataTables'>";
+        divStr += "<thead>";
+        divStr += "<tr>";
+        divStr += "<th>标识</th>";
+        divStr += "<th>操作者标识</th>";
+        divStr += "<th>操作者名称</th>";
+        divStr += "<th>操作者类型</th>";
+        divStr += "<th>操作时间</th>";
+        divStr += "<th>操作模块</th>";
+        divStr += "<th>操作类型</th>";
+        divStr += "<th>操作内容</th>";
+        divStr += "<th>操作结果</th>";
+        divStr += "<th>错误码</th>";
+        divStr += "<th>错误级别</th>";
+        divStr += "</tr>";
+        divStr += "</thead>";
+        divStr += "<tbody >";
+        for (var i = 0; i < list.length; i++) {
+            var itm = list[i];
+            divStr += "<tr class='gradeA'>";
+            divStr += "<td>" + (i + 1) + "</td>";
+            divStr += "<td>" + itm.operatorId + "</td>";
+            divStr += "<td>" + itm.operatorName + "</td>";
+            divStr += "<td>" + itm.operatorType + "</td>";
+            divStr += "<td>" + itm.operateTime + "</td>";
+            divStr += "<td>" + itm.module + "</td>";
+            divStr += "<td>" + itm.operateType + "</td>";
+            divStr += "<td>" + itm.content + "</td>";
+            divStr += "<td>" + itm.operateResult + "</td>";
+            divStr += "<td>" + itm.errorCode + "</td>";
+            divStr += "<td>" + itm.errorLevel + "</td>";
+            divStr += "</tr>";
+        }
+        divStr += "</tbody>";
+        divStr += "</table>";
+        return divStr;
+    }
 
 </script>
 
