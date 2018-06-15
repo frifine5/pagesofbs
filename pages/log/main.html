@@ -269,9 +269,9 @@
             s = 1, e = totalPages;
         }else{
             if(curpage + 5 > totalPages){
-                s = totalPages - 5;
+                s = totalPages - 4;
             }else if(curpage - 5 < 0){
-                e = curpage + 5;
+                e = curpage + 4;
             }
         }
         for (var i = s; i <= e; i++) {

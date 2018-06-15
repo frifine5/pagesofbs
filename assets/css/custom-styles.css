@@ -484,3 +484,42 @@ ul.nav.nav-second-level.collapse.in {
 }
 
 
+/* 分页 使用 --------------------------------------------------START */
+.container {
+    background: #fdfdfd;
+    padding: 1rem;
+    margin: 3rem auto;
+    border-radius: 0.2rem;
+    counter-reset: pagination;
+    text-align: center;
+}
+.container:after {
+    clear: both;
+    content: "";
+    display: table;
+}
+.container ul {
+    width: 100%;
+}
+
+.large {
+    width: 45rem;
+}
+
+
+.pagination ul, li {
+    list-style: none;
+    display: inline;
+    padding-left: 0px;
+}
+
+.pagination li {
+    counter-increment: pagination;
+}
+
+.active{
+    font-size: larger;
+}
+
+
+/* 分页 使用 --------------------------------------------------END */
