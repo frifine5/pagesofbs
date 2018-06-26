@@ -15,6 +15,10 @@
     <link href="assets/css/custom-styles.css" rel="stylesheet"/>
 
 
+    <style>
+        img{ width: auto; height: auto; max-width: 100%; max-height: 100%; }
+    </style>
+
 </head>
 <body >
 <div id="wrapper">
@@ -64,12 +68,12 @@
             <!-- /. ROW  -->
             <div class="row col-xs-12">
                 <div>&nbsp;</div>
-                <div class="col-md-8 col-sm-12 col-xs-12">
-                    <div class="panel panel-primary text-center no-boder bg-color-green">
+                <div class="col-md-8 col-sm-12 col-xs-12" >
+                    <div class="panel panel-primary text-center no-boder bg-color-green" >
                         <div class="panel-body">
-                            <img src="images/priceList.png" />
+                            <img id="middleImage" src="images/priceList.png"/>
                         </div>
-                        <div class="panel-footer back-footer-green">
+                        <div id="middleTitle" class="panel-footer back-footer-green">
                             水费计价规则
                         </div>
                     </div>
@@ -77,48 +81,17 @@
 
                 <div class="col-md-4 col-sm-12 col-xs-12">
                     <div ><br/>
-                        <button class="col-xs-9 btn btn-info" onclick="javascript: maindo(1)">显示水质</button><br/><br/>
-                        <button class="col-xs-9 btn btn-info">查询余额</button><br/><br/>
-                        <button class="col-xs-9 btn btn-info">自助服务</button><br/><br/>
-                        <button class="col-xs-9 btn btn-warning">挂失</button><br/><br/>
+                        <button class="col-xs-9 btn btn-info" onclick="mainDo(1)">显示水质</button><br/><br/>
+                        <button class="col-xs-9 btn btn-info" onclick="mainDo(2)">查询余额</button><br/><br/>
+                        <button class="col-xs-9 btn btn-info" onclick="mainDo(3)">自助服务</button><br/><br/>
+                        <button class="col-xs-9 btn btn-warning" onclick="mainDo(4)">挂失</button><br/><br/>
                     </div>
 
                 </div>
             </div>
 
 
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <div class="col-lg-9">
-                        <h4>查询条件</h4>
-                        <div id="queryLeft" class="col-lg-6 form-group has-success">
-                            <div class="col-lg-6 form-group has-success">
-                                <label class="control-label" for="iModule">模块</label>
-                                <input type="text" class="form-control" id="iModule">
-                            </div>
-                            <div class="col-lg-6 form-group has-success">
-                                <label class="control-label" for="iOperateType">操作类型</label>
-                                <input type="text" class="form-control" id="iOperateType">
-                            </div>
-                            <div class="col-lg-6 form-group has-warning">
-                                <label class="control-label" for="iUserId">操作者标识</label>
-                                <input type="text" class="form-control" id="iUserId">
-                            </div>
-                            <div class="col-lg-6 form-group has-warning">
-                                <label class="control-label" for="iUserName">操作者名称</label>
-                                <input type="text" class="form-control" id="iUserName">
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-            </div>
-
-        </div>
+          </div>
         <!-- /. PAGE INNER  -->
     </div>
     <!-- /. PAGE WRAPPER  -->
@@ -174,11 +147,71 @@
      * 根据flag调用实现
      * @param flag
      */
-    function miando(flag){
+    function mainDo(flag){
        // 分发功能点
+        if(flag == 1){
+            changeImage("middleImage", "/images/waterQuality.png");
+        }else if(flag == 2){
+            alert("查询余额");
+            queryRestMoney();
+        }else if(flag == 3){
+            alert("自助服务");
+        }else if(flag == 4) {
+            alert("挂失");
+        }
 
     }
 
+    /*
+    *显示当前水质图片--静态
+    **/
+    function changeImage(id, src) {
+        var element = document.getElementById(id);
+        element.src = src;
+        document.getElementById("middleTitle").innerHTML="当前水质";
+    }
+
+
+
+    function queryRestMoney(){
+        /*
+        *
+        *     <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="col-lg-9">
+                        <h4>查询条件</h4>
+                        <div id="queryLeft" class="col-lg-6 form-group has-success">
+                            <div class="col-lg-6 form-group has-success">
+                                <label class="control-label" for="iModule">模块</label>
+                                <input type="text" class="form-control" id="iModule">
+                            </div>
+                            <div class="col-lg-6 form-group has-success">
+                                <label class="control-label" for="iOperateType">操作类型</label>
+                                <input type="text" class="form-control" id="iOperateType">
+                            </div>
+                            <div class="col-lg-6 form-group has-warning">
+                                <label class="control-label" for="iUserId">操作者标识</label>
+                                <input type="text" class="form-control" id="iUserId">
+                            </div>
+                            <div class="col-lg-6 form-group has-warning">
+                                <label class="control-label" for="iUserName">操作者名称</label>
+                                <input type="text" class="form-control" id="iUserName">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+        * */
+
+
+    }
 
 </script>
 
