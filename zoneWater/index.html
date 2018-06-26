@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>home-welcome</title>
+
+    <!-- Bootstrap Styles-->
+    <link href="assets/css/bootstrap.css" rel="stylesheet"/>
+    <!-- FontAwesome Styles-->
+    <link href="assets/css/font-awesome.css" rel="stylesheet"/>
+    <!-- Morris Chart Styles-->
+    <link href="assets/js/morris/morris-0.4.3.min.css" rel="stylesheet"/>
+    <!-- Custom Styles-->
+    <link href="assets/css/custom-styles.css" rel="stylesheet"/>
+
+
+</head>
+<body >
+<div id="wrapper">
+    <nav class="navbar navbar-default top-navbar" role="navigation">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="index.html">小区用水系统</a>
+        </div>
+
+    </nav>
+    <!--/. NAV TOP  -->
+    <nav class="navbar-default navbar-side" role="navigation">
+        <div class="sidebar-collapse">
+            <ul class="nav" id="main-menu">
+
+                <li>
+                    <a class="active-menu" href="/index.html"><i class="fa fa-dashboard"></i>首页</a>
+                </li>
+
+                <li>
+                    <a onclick="changeInner('/pages/client/main.html')"><i class="fa fa-desktop"></i>用水机</a>
+                </li>
+                <li>
+                    <a onclick="changeInner('/pages/log/main.html')"><i class="fa fa-bar-chart-o"></i> 日志管理</a>
+                </li>
+
+
+            </ul>
+
+        </div>
+
+    </nav>
+    <!-- /. NAV SIDE  -->
+    <div id="page-wrapper">
+        <div id="page-inner">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="page-header">
+                        用水说明
+                        <small>Summary of how to use this machine.</small>
+                    </h2>
+                </div>
+            </div>
+
+
+
+            <!-- /. ROW  -->
+            <div class="row col-xs-12">
+                <div>&nbsp;</div>
+                <div class="col-md-8 col-sm-12 col-xs-12">
+                    <div class="panel panel-primary text-center no-boder bg-color-green">
+                        <div class="panel-body">
+                            <img src="images/priceList.png" />
+                        </div>
+                        <div class="panel-footer back-footer-green">
+                            水费计价规则
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-sm-12 col-xs-12">
+                    <div ><br/>
+                        <button class="col-xs-9 btn btn-info" onclick="javascript: maindo(1)">显示水质</button><br/><br/>
+                        <button class="col-xs-9 btn btn-info">查询余额</button><br/><br/>
+                        <button class="col-xs-9 btn btn-info">自助服务</button><br/><br/>
+                        <button class="col-xs-9 btn btn-warning">挂失</button><br/><br/>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="col-lg-9">
+                        <h4>查询条件</h4>
+                        <div id="queryLeft" class="col-lg-6 form-group has-success">
+                            <div class="col-lg-6 form-group has-success">
+                                <label class="control-label" for="iModule">模块</label>
+                                <input type="text" class="form-control" id="iModule">
+                            </div>
+                            <div class="col-lg-6 form-group has-success">
+                                <label class="control-label" for="iOperateType">操作类型</label>
+                                <input type="text" class="form-control" id="iOperateType">
+                            </div>
+                            <div class="col-lg-6 form-group has-warning">
+                                <label class="control-label" for="iUserId">操作者标识</label>
+                                <input type="text" class="form-control" id="iUserId">
+                            </div>
+                            <div class="col-lg-6 form-group has-warning">
+                                <label class="control-label" for="iUserName">操作者名称</label>
+                                <input type="text" class="form-control" id="iUserName">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+        <!-- /. PAGE INNER  -->
+    </div>
+    <!-- /. PAGE WRAPPER  -->
+</div>
+<!-- /. WRAPPER  -->
+<!-- JS Scripts-->
+<!-- jQuery Js -->
+<script type="text/javascript" src="/js/jquery.js"></script>
+<!-- Bootstrap Js -->
+<script src="assets/js/bootstrap.min.js"></script>
+<!-- Metis Menu Js -->
+<script src="assets/js/jquery.metisMenu.js"></script>
+<!-- Morris Chart Js -->
+<script src="assets/js/morris/raphael-2.1.0.min.js"></script>
+<script src="assets/js/morris/morris.js"></script>
+<!-- Custom Js -->
+<script src="assets/js/custom-scripts.js"></script>
+
+<script type="text/javascript">
+
+    /**
+     * 跳转右侧页面
+     */
+    function changeInner(url) {
+        $("#page-inner").load(url, function () {
+            $("#page-inner").fadeIn(100);
+        });
+    }
+
+
+    /**
+     * 加载菜单
+     */
+    function getRoleMenu() {
+        $.ajax({
+            type: "get",
+            dataType: "json",
+            url: "/login/getMenus",
+            success: function (data) {
+                var m = "";
+                if (data.code == 0 && data.data.size > 0) {
+                    for (var i = 0; i < data.data.size; i++) {
+
+                    }
+                }
+            }
+
+        });
+
+    }
+
+    /**
+     * 根据flag调用实现
+     * @param flag
+     */
+    function miando(flag){
+       // 分发功能点
+
+    }
+
+
+</script>
+
+
+</body>
+</html>
