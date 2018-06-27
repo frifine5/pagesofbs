@@ -168,18 +168,16 @@
         } else {
             stIdx = Math.ceil(reqPage - 1) * 10 + "";
         }
-        var data = {
-            "operateType": operateType,
-            "module": module,
-            "userId": userId,
-            "userName": userName,
-            "scpStart": st,
-            "scpEnd": et,
-            "stIdx": stIdx
-        };
-
+        var data = "{\"operateType\": \""+operateType+"\"," +
+            "            \"module\": \""+module+"\"," +
+            "            \"userId\": \""+userId+"\"," +
+            "            \"userName\": \""+userName+"\"," +
+            "            \"scpStart\": \""+st+"\"," +
+            "            \"scpEnd\": \""+et+"\"," +
+            "            \"stIdx\": "+stIdx+"}";
         $.ajax({
             type: "post",
+            contentType: "application/json; charset=utf-8",
             data: data,
             dataType: "JSON",
             url: "/log/queryLogs.json",
@@ -318,6 +316,7 @@
         var data = {
             "taskId": "1"
         };
+        data = "{\"taskId\":\"1\"}";
 
         $.ajax({
             type: "post",
