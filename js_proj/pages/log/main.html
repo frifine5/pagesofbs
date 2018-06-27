@@ -114,6 +114,22 @@
         </div>
         <!--End Advanced Tables -->
     </div>
+
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="col-lg-9">
+                    <div class="col-lg-12 form-group">
+                        <div class="col-lg-3 form-group">
+                            <label class="control-label" for="querySubmit">&nbsp;</label>
+                            <input type="button" onclick="testFunc()" class="form-control" id="querySubmit"
+                                   value="测试">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 
@@ -150,7 +166,7 @@
         if (null == reqPage) {
             stIdx = "0";
         } else {
-            stIdx = Math.ceil(reqPage - 1) * 10 +"";
+            stIdx = Math.ceil(reqPage - 1) * 10 + "";
         }
         var data = {
             "operateType": operateType,
@@ -261,38 +277,67 @@
         var divideStr = "<div class='container large'><div class='pagination'>";
         divideStr += "<ul>";
         divideStr += "<li><button onclick='conditionQuery(1)'><<</button></li>&nbsp;&nbsp;";
-        if(curpage != "1" && curpage > 1){
-            divideStr += "<li><button onclick='conditionQuery("+Math.ceil(curpage-1)+")'><.</button></li>&nbsp;&nbsp;";
+        if (curpage != "1" && curpage > 1) {
+            divideStr += "<li><button onclick='conditionQuery(" + Math.ceil(curpage - 1) + ")'><.</button></li>&nbsp;&nbsp;";
         }
         var s = curpage, e = totalPages;
-        if(totalPages <=5){
+        if (totalPages <= 5) {
             s = 1, e = totalPages;
-        }else{
-            if(curpage + 5 > totalPages){
+        } else {
+            if (curpage + 5 > totalPages) {
                 s = totalPages - 4;
-            }else if(curpage - 5 < 0){
+            } else if (curpage - 5 < 0) {
                 e = curpage + 4;
             }
         }
         for (var i = s; i <= e; i++) {
             if (i == curpage) {
-                divideStr += "<li><button id='curPage' class='active' value='"+i+"'>" + i + "</button></li>&nbsp;&nbsp;";
+                divideStr += "<li><button id='curPage' class='active' value='" + i + "'>" + i + "</button></li>&nbsp;&nbsp;";
             } else {
-                divideStr += "<li><button onclick='javascript: switchPages(this)' value='"+i+"'>" + i + "</button></li>&nbsp;&nbsp;";
+                divideStr += "<li><button onclick='javascript: switchPages(this)' value='" + i + "'>" + i + "</button></li>&nbsp;&nbsp;";
             }
         }
-        if(curpage < totalPages){
-            divideStr += "<li><button onclick='conditionQuery("+Math.ceil(curpage+1)+")'>.></button></li>&nbsp;&nbsp;";
+        if (curpage < totalPages) {
+            divideStr += "<li><button onclick='conditionQuery(" + Math.ceil(curpage + 1) + ")'>.></button></li>&nbsp;&nbsp;";
         }
-        divideStr += "<li><button onclick='conditionQuery("+totalPages+")'>>></button></li>";
+        divideStr += "<li><button onclick='conditionQuery(" + totalPages + ")'>>></button></li>";
         divideStr += "</ul></div></div>";
         $("#divideFrame").html(divideStr);
     }
 
-    function switchPages(obj){
+    function switchPages(obj) {
         var v = $(obj).val();
         conditionQuery(v);
     }
+
+</script>
+
+<script>
+
+    function testFunc() {
+        var data = {
+            "taskId": "1"
+        };
+
+        $.ajax({
+            type: "post",
+            data: data,
+            dataType: "JSON",
+            url: "/pubMonitor/queryResultDetail.json",
+            cache: false,//false是不缓存，true为缓存
+            async: true,//true为异步，false为同步
+            timeout: 10000,
+            success: function (data) {
+                var rtn = "结果代码："+data.code+", 结果信息" + data.message;
+                alert(rtn);
+            },
+            error: function () {
+                var warnStr = "<strong>警告！</strong>服务超时";
+                $("#warnFrame").html(warnStr);
+            }
+        });
+    }
+
 
 </script>
 
