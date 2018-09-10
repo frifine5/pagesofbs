@@ -26,6 +26,31 @@
         <div class="navbar-header">
             <a class="navbar-brand" href="index.html">小区用水系统</a>
         </div>
+        <ul class="nav navbar-top-links navbar-right">
+
+            <!-- 用户图标 -->
+
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+                    <i class="fa fa-user fa-fw"></i>
+                    <span>欢迎你 ${user}</span>
+                    <i class="fa fa-caret-down"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-user">
+                    <li><a href="#"><i class="fa fa-user fa-fw"></i>账户信息</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li><a href="#"><i class="fa fa-sign-out fa-fw"></i> 退出系统</a>
+                    </li>
+                </ul>
+                <a onclick="doLogin();event.returnValue=false;" href="javascript:void(0)">
+                    <i class="glyphicon glyphicon-log-in"></i>
+                    <span>登录</span>
+                </a>
+
+            </li>
+
+        </ul>
 
     </nav>
     <!--/. NAV TOP  -->
@@ -46,6 +71,8 @@
 
 
             </ul>
+
+
 
         </div>
 
